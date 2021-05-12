@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.prtcdemo"
+        minSdkVersion rootProject.minSdkVersion
+        compileSdkVersion rootProject.compileSdkVersion
+        buildToolsVersion rootProject.buildToolsVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionName rootProject.versionName
+        versionCode 36
+        ndk {
+            abiFilters  "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("src/main/urtc.jks")
+            storePassword "123456"
+            keyAlias "urtc"
+            keyPassword "123456"
+        }
+        debug {
+            storeFile file("src/main/urtc.jks")
+            storePassword "123456"
+            keyAlias "urtc"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["/src/main/jniLibs"]
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation var.SupportV7
+    implementation var.SupportV4
+    implementation var.SupportRecyclerviewV7
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.github.markzhai:blockcanary-android:1.5.0'
+    testImplementation 'junit:junit:4.12'
+
+    implementation (name: 'PRTCSDK_Android-1.9.7', ext: 'aar')
+    implementation(name: 'libuvccamera-release', ext: 'aar')
+    implementation(name: 'common-2.12.4', ext: 'aar')
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //bugly
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
+}
