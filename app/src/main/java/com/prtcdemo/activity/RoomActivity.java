@@ -786,9 +786,10 @@ public class RoomActivity extends AppCompatActivity implements VideoListener {
 
 //                             PRTCSurfaceViewGroup 定义的viewgroup,内含polyvRtcRenderView
                             videoView = new PRTCSurfaceViewGroup(getApplicationContext());
+                            PRTCSurfaceViewRenderer surfaceViewRenderer = new PRTCSurfaceViewRenderer(getApplicationContext());
                             videoView.init(false, new int[]{R.mipmap.video_open, R.mipmap.loudspeaker, R.mipmap.video_close,
                                     R.mipmap.loudspeaker_disable, R.drawable.publish_layer}, mOnRemoteOpTrigger,
-                                    new int[]{R.id.remote_video, R.id.remote_audio}, null);
+                                    new int[]{R.id.remote_video, R.id.remote_audio}, surfaceViewRenderer);
                             videoView.setTag(info);
                             videoView.setId(R.id.video_view);
                             //设置交换

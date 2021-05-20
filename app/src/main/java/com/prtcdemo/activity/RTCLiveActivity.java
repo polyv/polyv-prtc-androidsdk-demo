@@ -1032,7 +1032,8 @@ public class RTCLiveActivity extends AppCompatActivity
                         if (info.isHasVideo()) { // 订阅流是否包含视频
 //                            PRTCSurfaceViewGroup 定义的viewgroup,RTCVideoViewInfo
                             videoView = new PRTCSurfaceViewGroup(getApplicationContext());
-                            videoView.init(false, new int[]{R.mipmap.video_open, R.mipmap.loudspeaker, R.mipmap.video_close, R.mipmap.loudspeaker_disable, R.drawable.publish_layer}, mOnRemoteOpTrigger, new int[]{R.id.remote_video, R.id.remote_audio}, null);
+                            PRTCSurfaceViewRenderer surfaceViewRenderer = new PRTCSurfaceViewRenderer(getApplicationContext());
+                            videoView.init(false, new int[]{R.mipmap.video_open, R.mipmap.loudspeaker, R.mipmap.video_close, R.mipmap.loudspeaker_disable, R.drawable.publish_layer}, mOnRemoteOpTrigger, new int[]{R.id.remote_video, R.id.remote_audio}, surfaceViewRenderer);
                             // PRTCSurfaceViewRenderer
                             //videoView = new PRTCSurfaceViewRenderer(getApplicationContext());// 初始化渲染界面
                             //videoView.init();
