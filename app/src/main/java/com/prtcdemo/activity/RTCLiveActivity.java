@@ -1994,7 +1994,7 @@ public class RTCLiveActivity extends AppCompatActivity
             Log.d(TAG, " start remote record: ");
             mAtomOpStart = true;
             // 生成录制配置
-            PRTCMixProfile mixProfile = (PRTCMixProfile) PRTCMixProfile.getInstance().assembleRecordMixParamsBuilder()
+            PRTCMixProfile mixProfile = PRTCMixProfile.getInstance().assembleRecordMixParamsBuilder()
                     .type(PRTCMixProfile.MIX_TYPE_RECORD)
                     //画面模式
                     .layout(PRTCMixProfile.LAYOUT_AVERAGE_1)
@@ -2034,7 +2034,7 @@ public class RTCLiveActivity extends AppCompatActivity
             Log.d(TAG, " start mix: ");
             mAtomOpStart = true;
             // 生成转推配置
-            PRTCMixProfile mixProfile = (PRTCMixProfile) PRTCMixProfile.getInstance().assembleUpdateMixParamsBuilder()
+            PRTCMixProfile mixProfile = PRTCMixProfile.getInstance().assembleUpdateMixParamsBuilder()
                     .type(PRTCMixProfile.MIX_TYPE_RELAY)
                     //画面模式
                     .layout(PRTCMixProfile.LAYOUT_CLASS_ROOM_2)
@@ -2079,7 +2079,7 @@ public class RTCLiveActivity extends AppCompatActivity
 
     private void update(int type) {
         Log.d(TAG, " start update: ");
-        PRTCMixProfile mixProfile = (PRTCMixProfile) PRTCMixProfile.getInstance().assembleMixParamsBuilder()
+        PRTCMixProfile mixProfile = PRTCMixProfile.getInstance().assembleMixParamsBuilder()
                 .type(type)
                 //画面模式
                 .layout(PRTCMixProfile.LAYOUT_CLASS_ROOM_2)

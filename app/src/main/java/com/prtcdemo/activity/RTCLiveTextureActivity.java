@@ -1774,7 +1774,7 @@ public class RTCLiveTextureActivity extends AppCompatActivity
         if (!mIsRemoteRecording) {
             Log.d(TAG, " start remote record: ");
             mAtomOpStart = true;
-            PRTCMixProfile mixProfile = (PRTCMixProfile) PRTCMixProfile.getInstance().assembleMixParamsBuilder()
+            PRTCMixProfile mixProfile = PRTCMixProfile.getInstance().assembleMixParamsBuilder()
                     .type(PRTCMixProfile.MIX_TYPE_RECORD)
                     //画面模式
                     .layout(PRTCMixProfile.LAYOUT_CLASS_ROOM_2)
@@ -1815,7 +1815,7 @@ public class RTCLiveTextureActivity extends AppCompatActivity
         if (!mIsMixing) {
             Log.d(TAG, " start mix: ");
             mAtomOpStart = true;
-            PRTCMixProfile mixProfile = (PRTCMixProfile) PRTCMixProfile.getInstance().assembleMixParamsBuilder()
+            PRTCMixProfile mixProfile = PRTCMixProfile.getInstance().assembleMixParamsBuilder()
                     .type(PRTCMixProfile.MIX_TYPE_RELAY)
                     //画面模式
                     .layout(PRTCMixProfile.LAYOUT_CLASS_ROOM_2)
