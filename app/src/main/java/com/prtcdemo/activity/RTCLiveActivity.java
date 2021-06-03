@@ -93,6 +93,8 @@ import core.renderer.SurfaceViewGroup;
 
 import static com.polyv.prtc.sdkengine.define.PRTCErrorCode.NET_ERR_CODE_OK;
 import static com.polyv.prtc.sdkengine.define.PRTCMediaType.MEDIA_TYPE_VIDEO;
+import static com.prtcdemo.utils.CommonUtils.BUCKET;
+import static com.prtcdemo.utils.CommonUtils.REGION;
 
 /**
  * @author ciel
@@ -932,6 +934,11 @@ public class RTCLiveActivity extends AppCompatActivity
                     }
                 }
             });
+        }
+
+        @Override
+        public void onLocalUnPublishOnly(int code, String msg, PRTCStreamInfo info) {
+
         }
 
         @Override
@@ -2020,6 +2027,10 @@ public class RTCLiveActivity extends AppCompatActivity
                     .addStreamMode(PRTCMixProfile.ADD_STREAM_MODE_AUTO)
                     //添加流列表，也可以后续调用MIX_TYPE_UPDATE 动态添加
                     .addStream(mUserid, MEDIA_TYPE_VIDEO.ordinal())
+                    //录像存储区域
+                    .region(REGION)
+                    //录像存储桶
+                    .Bucket(BUCKET)
                     .build();
             sdkEngine.startRecord(mixProfile); // 开始录制
         } else if (!mAtomOpStart) {
@@ -2068,6 +2079,10 @@ public class RTCLiveActivity extends AppCompatActivity
                     .layoutUserLimit(2)
                     //房间没流多久结束任务
                     .taskTimeOut(70)
+                    //录像存储区域
+                    .region(REGION)
+                    //录像存储桶
+                    .Bucket(BUCKET)
                     .build();
             sdkEngine.updateMixConfig(mixProfile); // 开始转推
         } else if (!mAtomOpStart) {
@@ -2114,6 +2129,10 @@ public class RTCLiveActivity extends AppCompatActivity
                 .layoutUserLimit(2)
                 //房间没流多久结束任务
                 .taskTimeOut(70)
+                //录像存储区域
+                .region(REGION)
+                //录像存储桶
+                .Bucket(BUCKET)
                 .build();
         sdkEngine.updateMixConfig(mixProfile);
     }
@@ -2347,13 +2366,13 @@ public class RTCLiveActivity extends AppCompatActivity
             synchronized (extendByteBufferSync) {
                 if (videoSourceData != null) {
                     videoSourceData.clear();
-                    sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(videoSourceData);
+                    sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(videoSourceData);
                     videoSourceData = null;
                 }
             }
             if (cacheBuffer != null) {
                 cacheBuffer.clear();
-                sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(cacheBuffer);
+                sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(cacheBuffer);
                 cacheBuffer = null;
             }
         }
@@ -2407,7 +2426,7 @@ public class RTCLiveActivity extends AppCompatActivity
         @Override
         public void releaseBuffer() {
             if (cache != null)
-                sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(cache);
+                sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(cache);
             cache = null;
         }
     };

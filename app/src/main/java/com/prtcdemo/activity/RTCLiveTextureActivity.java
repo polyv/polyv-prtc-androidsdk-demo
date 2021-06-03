@@ -896,6 +896,10 @@ public class RTCLiveTextureActivity extends AppCompatActivity
             });
         }
 
+        @Override
+        public void onLocalUnPublishOnly(int code, String msg, PRTCStreamInfo info) {
+
+        }
 
         @Override
         public void onRemoteUserJoin(String uid) {
@@ -2066,7 +2070,7 @@ public class RTCLiveTextureActivity extends AppCompatActivity
                 videoSourceData = null;
             }
             if(cacheBuffer != null){
-                sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(cacheBuffer);
+                sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(cacheBuffer);
                 cacheBuffer = null;
             }
         }
@@ -2120,7 +2124,7 @@ public class RTCLiveTextureActivity extends AppCompatActivity
         @Override
         public void releaseBuffer() {
             if(cache != null)
-                sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(cache);
+                sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(cache);
             cache = null;
         }
     };

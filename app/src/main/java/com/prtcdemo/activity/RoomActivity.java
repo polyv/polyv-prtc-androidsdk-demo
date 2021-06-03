@@ -319,7 +319,7 @@ public class RoomActivity extends AppCompatActivity implements VideoListener {
                 rgbSourceData = null;
             }
             if(cacheBuffer != null){
-                sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(cacheBuffer);
+                sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(cacheBuffer);
             }
         }
     };
@@ -369,7 +369,7 @@ public class RoomActivity extends AppCompatActivity implements VideoListener {
         @Override
         public void releaseBuffer() {
             if(cache != null)
-            sdkEngine.getNativeOpInterface().realeaseNativeByteBuffer(cache);
+            sdkEngine.getNativeOpInterface().releaseNativeByteBuffer(cache);
             cache = null;
         }
     };
@@ -699,6 +699,11 @@ public class RoomActivity extends AppCompatActivity implements VideoListener {
                     }
                 }
             });
+        }
+
+        @Override
+        public void onLocalUnPublishOnly(int code, String msg, PRTCStreamInfo info) {
+
         }
 
         @Override
